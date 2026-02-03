@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  dev:
+    build: .
+    volumes:
+      - .:/workspace
+    security_opt:
+      - seccomp:unconfined # Required for io_uring in some cases
+    cap_add:
+      - SYS_NICE         # Required for cpu pinning (thread affinity)
+      - IPC_LOCK         # Required for some zero-copy memory locking
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    command: tail -f /dev/null # Keep the container running

@@ -1,0 +1,7 @@
+build/
+*.o
+*.bin
+*.out
+.DS_Store
+.vscode/
+compile_commands.json
